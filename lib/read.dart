@@ -12,10 +12,11 @@ class _ScreenReadState extends State<ScreenRead> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: StreamBuilder(
         stream: FirebaseFirestore.instance
             .collection('startup')
-            .where('cidade_sede', isEqualTo: 'Recife')
+            // .where('cidade_sede', isEqualTo: 'Recife')
             .snapshots(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
@@ -25,9 +26,37 @@ class _ScreenReadState extends State<ScreenRead> {
               itemCount: snapshot.data?.docs.length,
               itemBuilder: (context, index) {
                 DocumentSnapshot startups = snapshot.data!.docs[index];
-                return Text(
-                  '${startups['cidade_sede']}, ${startups['nome_startup']}, ${startups['id_startup']}',
-                  style: const TextStyle(color: Colors.black),
+                return Card(
+                  child: SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Column(
+                        children: [
+                          Text(
+                            startups['id_startup'].toString(),
+                            style: const TextStyle(
+                              color: Colors.black,
+                              fontSize: 24,
+                            ),
+                          ),
+                          Text(
+                            startups['nome_startup'],
+                            style: const TextStyle(
+                              color: Colors.black,
+                              fontSize: 24,
+                            ),
+                          ),
+                          Text(
+                            startups['cidade_sede'],
+                            style: const TextStyle(
+                              color: Colors.black,
+                              fontSize: 24,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 );
               },
             );

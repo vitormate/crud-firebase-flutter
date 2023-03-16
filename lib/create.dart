@@ -43,21 +43,39 @@ class _ScreemCreateState extends State<ScreemCreate> {
 
     return Column(
       children: [
-        const Text('id_startup'),
+        const SizedBox(
+          height: 30,
+        ),
+        const Text(
+          'id_startup',
+          style: TextStyle(
+            fontSize: 24,
+          ),
+        ),
         Forms(
           controller: idStartup,
         ),
         const SizedBox(
           height: 30,
         ),
-        const Text('nome_startup'),
+        const Text(
+          'nome_startup',
+          style: TextStyle(
+            fontSize: 24,
+          ),
+        ),
         Forms(
           controller: nomeStartup,
         ),
         const SizedBox(
           height: 30,
         ),
-        const Text('cidade_sede'),
+        const Text(
+          'cidade_sede',
+          style: TextStyle(
+            fontSize: 24,
+          ),
+        ),
         Forms(
           controller: cidadeSede,
         ),
